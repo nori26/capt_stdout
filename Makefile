@@ -13,9 +13,16 @@ PURPLE		:= \033[1;35m
 GREEN		:= \033[1;32m
 RESET		:= \033[0;39m
 
+FTPF		:= 
+FTPFINC		:= 
+
 all		: $(NAME)
 
 -include $(DEPENDS)
+
+test	:
+	gcc $(FTPFINC) main.c libcapt.a -lpthared  $(FTPF) -lftprintf
+	./a.out
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)/$(*D)

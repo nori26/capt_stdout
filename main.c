@@ -1,18 +1,17 @@
 #include <stdio.h>
-#include "ft_printf.h"
+#include <stdlib.h>
+#include <string.h>
+// #include "ft_printf.h"
 #include "capt_stdout.h"
 
 #define FMT ""
-#define ARG 
+#define ARG 1
 
-void	get_stdout(int (*pf)())
+char	*get_stdout(int (*pf)(const char *, ...))
 {
-	char *ft;
-	char *lib;
-
 	capture_stdout();
 	pf(FMT, ARG);
-	ft_get_captured();
+	return (get_captured());
 }
 
 void test(char *lib, char *ft)
@@ -33,11 +32,11 @@ void test(char *lib, char *ft)
 
 int main()
 {
-	char *ft;
+	char *ft = "";
 	char *lib;
 
 	lib = get_stdout(printf);
-	ft = get_stdout(ft_printf);
+	// ft = get_stdout(ft_printf);
 	test(lib, ft);
 	free(ft);
 	free(lib);
