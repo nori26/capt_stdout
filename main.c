@@ -20,7 +20,7 @@ void test(char *lib, char *ft)
 	{
 		puts("KO");
 		FILE *f = fopen("result", "w");
-		fprintf(f, "lib: %s\n\nft: %s\n", lib, ft);
+		fprintf(f, "lib: %s\n\nft : %s\n", lib, ft);
 		fclose(f);
 	}
 	else
