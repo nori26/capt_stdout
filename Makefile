@@ -5,7 +5,6 @@ SRCDIR		:= .
 OBJDIR		:= ./obj
 INCLUDE		:= ./
 SRCS		:= $(shell find $(SRCDIR) -type f -name "*.c" | xargs basename -a)
-# SRCS		:= capt_stdout.c get_string_from_fd.c
 OBJS		:= $(SRCS:%.c=$(OBJDIR)/%.o)
 DEPENDS		:= $(OBJS:.o=.d)
 SHELL		:= /bin/bash
