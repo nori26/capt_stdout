@@ -2,6 +2,6 @@
 # define GETSTR_H
 # include <stddef.h>
 
-char	*get_string_from_fd(int fd, size_t size);
+char	*read_fd_by_size(int fd, size_t size);
 
 #endif

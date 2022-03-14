@@ -14,7 +14,7 @@ static char	*my_realloc(char *buf, ssize_t bufsize)
 	return (new_buf);
 }
 
-char	*get_string_from_fd(int fd, size_t size)
+char	*read_fd_by_size(int fd, size_t size)
 {
 	ssize_t	bufsize;
 	ssize_t	readsize;

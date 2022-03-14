@@ -48,7 +48,7 @@ static void	hook_stdout()
 static void	*drain_stdout(void *p)
 {
 	(void)p;
-	g_buf = or_exit(get_string_from_fd(g_capture_pipe[0], PIPE_BUF));
+	g_buf = or_exit(read_fd_by_size(g_capture_pipe[0], PIPE_BUF));
 	close(g_capture_pipe[0]);
 	return (NULL);
 }
