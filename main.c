@@ -7,16 +7,19 @@
 #define FMT ""
 #define ARG 1
 
-char	*get_stdout(int (*pf)(const char *, ...))
+static int get_stdout(char **s, int (*pf)(const char *, ...))
 {
+	int ret;
+
 	capture_stdout();
-	pf(FMT, ARG);
-	return (get_captured());
+	ret = pf(FMT, ARG);
+	*s = get_captured();
+	return (ret);
 }
 
-void test(char *lib, char *ft)
+void test(char *lib, char *ft, int ft_ret, int lib_ret)
 {
-	if (strcmp(lib, ft))
+	if (strcmp(lib, ft) && ft_ret != lib_ret)
 	{
 		puts("KO");
 		FILE *f = fopen("result", "w");
@@ -32,12 +35,14 @@ void test(char *lib, char *ft)
 
 int main()
 {
-	char *ft = "";
-	char *lib;
+	// char	*ft;
+	// int		ft_ret;
+	char	*lib;
+	int		lib_ret;
 
-	lib = get_stdout(printf);
-	// ft = get_stdout(ft_printf);
-	test(lib, ft);
-	free(ft);
+	lib_ret = get_stdout(&lib, printf);
+	// ft_ret = get_stdout(&ft, ft_printf);
+	// test(lib, ft, ft_ret, lib_ret);
+	// free(ft);
 	free(lib);
 }

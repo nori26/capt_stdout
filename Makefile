@@ -3,8 +3,8 @@ C			:= gcc
 CFLAGS		:= -Wall -Werror -Wextra -MMD -MP
 SRCDIR		:= .
 OBJDIR		:= ./obj
-INCLUDE		:= ./
-SRCS		:= $(shell find $(SRCDIR) -type f -name "*.c" | xargs basename -a)
+INCLUDE		:= -I ./
+SRCS		:= capt_stdout.c get_string_from_fd.c
 OBJS		:= $(SRCS:%.c=$(OBJDIR)/%.o)
 DEPENDS		:= $(OBJS:.o=.d)
 SHELL		:= /bin/bash
@@ -12,15 +12,15 @@ PURPLE		:= \033[1;35m
 GREEN		:= \033[1;32m
 RESET		:= \033[0;39m
 
-FTPF		:= 
-FTPFINC		:= 
+FTPF		:= -L .
+FTPFINC		:= -I .
 
 all		: $(NAME)
 
 -include $(DEPENDS)
 
-test	:
-	gcc $(FTPFINC) main.c libcapt.a -lpthared  $(FTPF) -lftprintf
+test	: $(NAME)
+	gcc $(FTPFINC) main.c libcapt.a -lpthread  $(FTPF) #-lftprintf
 	./a.out
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
